@@ -1,0 +1,162 @@
+.palette-monochromatic {
+    --color-background: #F5F2ED;
+    --color-surface: #FFFFFF;
+    --color-primary: #8B7F6F;
+    --color-secondary: #D4C9B8;
+    --color-accent: #6B6157;
+    --color-text: #3A3530;
+    --color-text-light: #6B6157;
+    --color-border: #D4C9B8;
+}
+
+.palette-complementary {
+    --color-background: #F8F7F3;
+    --color-surface: #FFFFFF;
+    --color-primary: #1A3A52;
+    --color-secondary: #D4A574;
+    --color-accent: #B88E5D;
+    --color-text: #0D1F2D;
+    --color-text-light: #4A6B82;
+    --color-border: #1A3A52;
+}
+
+.palette-analogous {
+    --color-background: #F4F6F5;
+    --color-surface: #FFFFFF;
+    --color-primary: #6B8E9E;
+    --color-secondary: #8BA396;
+    --color-accent: #5A7A87;
+    --color-text: #2E3E3C;
+    --color-text-light: #5A6B68;
+    --color-border: #8BA396;
+}
+
+.palette-triadic {
+    --color-background: #FAF8F6;
+    --color-surface: #FFFFFF;
+    --color-primary: #8B7B9B;
+    --color-secondary: #C4A4A0;
+    --color-accent: #A0B4A8;
+    --color-text: #3D3644;
+    --color-text-light: #6B6470;
+    --color-border: #C4A4A0;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+header,
+nav,
+footer {
+    border-color: var(--color-border);
+}
+
+nav ul li:hover,
+h2:hover,
+.notable-formulations li:hover,
+.category-list label:hover,
+.fast-menu li:hover {
+    color: var(--color-primary);
+}
+
+.catalog article {
+    border-color: var(--color-border);
+    background-color: var(--color-surface);
+}
+
+.catalog article p {
+    color: var(--color-text-light);
+}
+
+.price {
+    color: var(--color-text);
+}
+
+article button,
+.subscribe button {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+}
+
+article button:hover,
+.subscribe button:hover {
+    background-color: var(--color-accent);
+}
+
+.subscribe input {
+    border-color: var(--color-border);
+}
+
+.category-list input[type="radio"] {
+    border-color: var(--color-border);
+}
+
+.category-list input[type="radio"]:checked::after {
+    color: var(--color-primary);
+}
+
+.palette-selector {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.palette-selector h3 {
+    margin: 0 0 10px 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.palette-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.palette-button {
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.palette-button:hover {
+    background-color: var(--color-background);
+}
+
+.palette-button.active {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-color: var(--color-primary);
+}
+
+@media (max-width: 640px) {
+    .palette-selector {
+        top: 10px;
+        right: 10px;
+        padding: 10px;
+    }
+
+    .palette-selector h3 {
+        font-size: 9px;
+    }
+
+    .palette-button {
+        padding: 6px 10px;
+        font-size: 9px;
+    }
+}

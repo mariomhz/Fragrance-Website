@@ -1,0 +1,233 @@
+/* Mobile First */
+
+/* RESET AND BASE */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+header p {
+    letter-spacing: 8px;
+    font-size: 20px;
+    margin: 0;
+}
+
+/* NAVBAR */
+nav {
+    border-bottom: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
+    padding: 10px;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+nav ul li:hover {
+    text-decoration: underline;
+    color: var(--color-primary);
+}
+
+/* FOOTER */
+footer {
+    border-top: 1px solid var(--color-border);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+footer img {
+    width: 60px;
+}
+
+.brand {
+    font-weight: bold;
+}
+
+.disclaimer {
+    font-size: 12px;
+    max-width: 400px;
+    line-height: 1.4;
+}
+
+.subscribe {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.subscribe p {
+    margin: 0;
+}
+
+.subscribe form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.subscribe input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--color-border);
+    font: inherit;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+}
+
+.subscribe button {
+    all: unset;
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    padding: 10px 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.subscribe button:hover {
+    background-color: var(--color-accent);
+}
+
+/* TABLET: 640px - 800px */
+@media (min-width: 640px) {
+    footer {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    footer img {
+        order: 1;
+    }
+
+    .brand {
+        order: 2;
+        margin-top: 20px;
+    }
+
+    .subscribe {
+        order: 3;
+        border-top: none;
+        border-left: 1px solid var(--color-border);
+        padding-left: 20px;
+        padding-top: 0;
+        max-width: 500px;
+    }
+
+    .subscribe form {
+        flex-direction: row;
+    }
+
+    .subscribe input {
+        flex: 1;
+    }
+
+    .disclaimer {
+        order: 4;
+        width: 100%;
+        margin-top: 20px;
+        max-width: none;
+    }
+}
+
+/* TABLET-DESKTOP: 800px - 1024px */
+@media (min-width: 800px) {
+    nav ul {
+        flex-direction: row;
+        gap: 40px;
+    }
+}
+
+/* DESKTOP: >1024px */
+@media (min-width: 1024px) {
+    header {
+        text-align: left;
+        padding-left: 40px;
+    }
+
+    header p {
+        font-size: 25px;
+    }
+
+    nav ul {
+        flex-direction: row;
+        gap: 80px;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: auto auto 1fr auto;
+        grid-template-areas: "img brand disclaimer subscribe";
+        gap: 40px;
+        align-items: start;
+        padding: 40px;
+    }
+
+    footer img {
+        grid-area: img;
+        margin-top: 10px;
+    }
+
+    .brand {
+        grid-area: brand;
+        margin-top: 30px;
+    }
+
+    .disclaimer {
+        grid-area: disclaimer;
+        max-width: 400px;
+        margin-top: 0;
+    }
+
+    .subscribe {
+        grid-area: subscribe;
+        border-left: 1px solid var(--color-border);
+        padding-left: 40px;
+        padding-top: 0;
+        max-width: 500px;
+        border-top: none;
+    }
+
+    .subscribe form {
+        flex-direction: row;
+    }
+
+    .subscribe input {
+        flex: 1;
+    }
+}
