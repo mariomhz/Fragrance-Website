@@ -102,24 +102,56 @@ article button:hover,
     top: 20px;
     right: 20px;
     z-index: 1000;
+    cursor: pointer;
+    transition: all 0.3s ease;
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
-    padding: 15px;
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 12px;
 }
 
-.palette-selector h3 {
-    margin: 0 0 10px 0;
-    font-size: 11px;
+.palette-selector:not(.collapsed) {
+    padding: 15px;
+}
+
+.palette-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-family: inherit;
+    font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.palette-arrow {
+    transition: transform 0.3s ease;
+    font-size: 12px;
+}
+
+.palette-selector:not(.collapsed) .palette-arrow {
+    transform: rotate(180deg);
 }
 
 .palette-buttons {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    margin-top: 0;
+}
+
+.palette-selector:not(.collapsed) .palette-buttons {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 10px;
 }
 
 .palette-button {
@@ -148,11 +180,18 @@ article button:hover,
     .palette-selector {
         top: 70px;
         right: 10px;
+    }
+
+    .palette-selector:not(.collapsed) {
         padding: 10px;
     }
 
-    .palette-selector h3 {
+    .palette-header {
         font-size: 9px;
+    }
+
+    .palette-arrow {
+        font-size: 10px;
     }
 
     .palette-button {
