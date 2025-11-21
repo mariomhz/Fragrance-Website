@@ -14,8 +14,11 @@
 
 <body class="palette-monochromatic">
 
-    <aside class="palette-selector">
-        <h3>Color palette</h3>
+    <aside class="palette-selector collapsed">
+        <div class="palette-header">
+            <span>Palette</span>
+            <span class="palette-arrow">▼</span>
+        </div>
         <div class="palette-buttons">
             <button class="palette-button active" data-palette="monochromatic">Monochromatic</button>
             <button class="palette-button" data-palette="complementary">Complementary</button>
@@ -211,8 +214,15 @@
     </footer>
 
     <script>
+        // Toggle palette selector
+        document.querySelector('.palette-header').addEventListener('click', function() {
+            document.querySelector('.palette-selector').classList.toggle('collapsed');
+        });
+
+        // Palette switching functionality
         document.querySelectorAll('.palette-button').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
                 const palette = this.getAttribute('data-palette');
 
                 document.body.classList.remove('palette-monochromatic', 'palette-complementary', 'palette-analogous', 'palette-triadic');
