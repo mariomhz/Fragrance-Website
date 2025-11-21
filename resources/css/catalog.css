@@ -160,13 +160,18 @@ main {
     text-align: center;
     padding: 10px;
     width: 100%;
+    height: 500px;
     background-color: var(--color-surface);
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .catalog article img {
     width: 100%;
-    height: auto;
+    height: 250px;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
 .catalog article p {
@@ -194,7 +199,7 @@ article button {
     font: inherit;
     padding: 0.5em 1em;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: auto;
 }
 
 article button:hover {
