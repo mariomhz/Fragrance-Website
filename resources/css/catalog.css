@@ -15,8 +15,9 @@ main {
 }
 
 .page-title h1 {
-    font-size: 28px;
+    font-size: 18px;
     margin: 0;
+    font-weight: normal;
 }
 
 /* FAST MENU */
@@ -36,6 +37,19 @@ main {
 
 .fast-menu li {
     cursor: pointer;
+}
+
+.fast-menu a {
+    color: var(--color-text);
+}
+
+.fast-menu a:visited {
+    color: var(--color-text);
+}
+
+.fast-menu a:hover {
+    text-decoration: underline;
+    color: var(--color-primary);
 }
 
 .fast-menu li:hover {
@@ -68,6 +82,19 @@ main {
 
 .notable-formulations li {
     cursor: pointer;
+}
+
+.notable-formulations a {
+    color: var(--color-text);
+}
+
+.notable-formulations a:visited {
+    color: var(--color-text);
+}
+
+.notable-formulations a:hover {
+    text-decoration: underline;
+    color: var(--color-primary);
 }
 
 .notable-formulations li:hover {
@@ -268,7 +295,8 @@ article button:hover {
     }
 
     .page-title h1 {
-        font-size: 36px;
+        font-size: 22px;
+        font-weight: normal;
     }
 
     .advanced-menu {
