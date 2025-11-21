@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -95,6 +99,12 @@ footer img {
     line-height: 1.4;
 }
 
+.copyright {
+    font-size: 11px;
+    font-style: italic;
+    margin: 0;
+}
+
 .subscribe {
     display: flex;
     flex-direction: column;
@@ -180,6 +190,13 @@ footer img {
         margin-top: 20px;
         max-width: none;
     }
+
+    .copyright {
+        order: 5;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
 }
 
 /* TABLET-DESKTOP: 800px - 1024px */
@@ -209,7 +226,10 @@ footer img {
     footer {
         display: grid;
         grid-template-columns: auto auto 1fr auto;
-        grid-template-areas: "img brand disclaimer subscribe";
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "img brand disclaimer subscribe"
+            "copyright copyright copyright copyright";
         gap: 40px;
         align-items: start;
         padding: 40px;
@@ -246,5 +266,11 @@ footer img {
 
     .subscribe input {
         flex: 1;
+    }
+
+    .copyright {
+        grid-area: copyright;
+        text-align: center;
+        margin-top: 20px;
     }
 }
