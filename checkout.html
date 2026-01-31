@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ASIREM</title>
+    <link rel="icon" type="image/png" sizes="80x80" href="resources/icons/icon.png">
+    <link rel="stylesheet" href="resources/css/fonts.css">
+    <link rel="stylesheet" href="resources/css/palettes.css">
+    <link rel="stylesheet" href="resources/css/common.css">
+    <link rel="stylesheet" href="resources/css/detail.css">
+    <link rel="stylesheet" href="resources/css/checkout.css">
+</head>
+
+<body class="palette-monochromatic">
+
+    <aside class="palette-selector collapsed">
+        <div class="palette-header">
+            <span>Palette</span>
+            <span class="palette-arrow">&#9660;</span>
+        </div>
+        <div class="palette-buttons">
+            <button class="palette-button active" data-palette="monochromatic">Monochromatic</button>
+            <button class="palette-button" data-palette="complementary">Complementary</button>
+            <button class="palette-button" data-palette="analogous">Analogous</button>
+            <button class="palette-button" data-palette="triadic">Triadic</button>
+        </div>
+    </aside>
+
+    <div class="demo-notice">
+        <p>THIS IS A DEMO WEBSITE - NOT A REAL SHOP - FOR EDUCATIONAL PURPOSES ONLY</p>
+    </div>
+
+    <header>
+        <p>ASIREM</p>
+    </header>
+
+    <nav aria-label="Main navigation">
+        <ul>
+            <li><a href="index.html">SHOP</a></li>
+            <li>ABOUT</li>
+            <li>GALLERY</li>
+            <li>FOLLOW</li>
+            <li>CART(0)</li>
+        </ul>
+    </nav>
+
+    <main class="checkout-main">
+        <nav class="breadcrumb" aria-label="Breadcrumb navigation">
+            <a href="index.html">HOME</a> / CHECKOUT
+        </nav>
+
+        <h1 class="checkout-title">Checkout</h1>
+
+        <!-- step indicator -->
+        <nav class="step-indicator" aria-label="Checkout progress">
+            <ol class="step-list">
+                <li class="step-item step-item--current" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Cart</span>
+                </li>
+                <li class="step-item step-item--pending" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Shipping</span>
+                </li>
+                <li class="step-item step-item--pending" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Payment</span>
+                </li>
+                <li class="step-item step-item--pending" data-step="4">
+                    <span class="step-number">4</span>
+                    <span class="step-label">Review</span>
+                </li>
+            </ol>
+        </nav>
+
+        <div class="checkout-container">
+            <div class="checkout-content">
+                <section class="checkout-step checkout-step--active" id="step-cart" aria-labelledby="step-cart-heading">
+                    <h2 id="step-cart-heading" class="step-heading">Your Cart</h2>
+
+                    <div class="cart-items" id="cart-items-container" aria-live="polite">
+                    </div>
+
+                    <div class="discount-section">
+                        <label for="discount-code" class="discount-label">Discount Code</label>
+                        <div class="discount-input-group">
+                            <input type="text" id="discount-code" name="discount-code" placeholder="Enter code" autocomplete="off">
+                            <button type="button" class="btn btn-secondary" id="apply-discount">Apply</button>
+                        </div>
+                        <p class="discount-message" id="discount-message" aria-live="polite"></p>
+                    </div>
+                </section>
+
+                <section class="checkout-step" id="step-shipping" aria-labelledby="step-shipping-heading">
+                    <h2 id="step-shipping-heading" class="step-heading">Shipping Information</h2>
+
+                    <fieldset class="shipping-zone-fieldset">
+                        <legend>Select Your Region</legend>
+                        <div class="zone-options">
+                            <label class="zone-option">
+                                <input type="radio" name="shipping-zone" value="europe" checked>
+                                <span class="zone-label">Europe</span>
+                            </label>
+                            <label class="zone-option">
+                                <input type="radio" name="shipping-zone" value="americas">
+                                <span class="zone-label">Americas</span>
+                            </label>
+                            <label class="zone-option">
+                                <input type="radio" name="shipping-zone" value="rest">
+                                <span class="zone-label">Rest of World</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div class="shipping-methods" id="shipping-methods">
+                        <fieldset class="shipping-method-fieldset" id="shipping-method-fieldset">
+                            <legend>Shipping Method</legend>
+                            <div class="method-options" id="method-options">
+                                <label class="method-option">
+                                    <input type="radio" name="shipping-method" value="standard" checked>
+                                    <span class="method-info">
+                                        <span class="method-name">Standard Shipping</span>
+                                        <span class="method-details">5-7 business days - Free</span>
+                                    </span>
+                                </label>
+                                <label class="method-option" id="express-option">
+                                    <input type="radio" name="shipping-method" value="express">
+                                    <span class="method-info">
+                                        <span class="method-name">Express Shipping</span>
+                                        <span class="method-details">2-3 business days - +15.00</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="shipping-unavailable" id="shipping-unavailable" hidden>
+                        <p class="error-message">
+                            <svg class="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                            </svg>
+                            We currently do not ship to your region. Please contact us for special arrangements.
+                        </p>
+                    </div>
+
+                    <form class="address-form" id="address-form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="full-name">Full Name <span class="required">*</span></label>
+                                <input type="text" id="full-name" name="full-name" required autocomplete="name" aria-describedby="full-name-error">
+                                <span class="error-text" id="full-name-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row form-row--two-col">
+                            <div class="form-group">
+                                <label for="email">Email <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required autocomplete="email" aria-describedby="email-error">
+                                <span class="error-text" id="email-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone <span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" required autocomplete="tel" aria-describedby="phone-error">
+                                <span class="error-text" id="phone-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="address1">Address Line 1 <span class="required">*</span></label>
+                                <input type="text" id="address1" name="address1" required autocomplete="address-line1" aria-describedby="address1-error">
+                                <span class="error-text" id="address1-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="address2">Address Line 2</label>
+                                <input type="text" id="address2" name="address2" autocomplete="address-line2">
+                            </div>
+                        </div>
+
+                        <div class="form-row form-row--two-col">
+                            <div class="form-group">
+                                <label for="city">City <span class="required">*</span></label>
+                                <input type="text" id="city" name="city" required autocomplete="address-level2" aria-describedby="city-error">
+                                <span class="error-text" id="city-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="postal-code">Postal Code <span class="required">*</span></label>
+                                <input type="text" id="postal-code" name="postal-code" required autocomplete="postal-code" aria-describedby="postal-code-error">
+                                <span class="error-text" id="postal-code-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="country">Country <span class="required">*</span></label>
+                                <select id="country" name="country" required autocomplete="country" aria-describedby="country-error">
+                                    <option value="">Select a country</option>
+                                </select>
+                                <span class="error-text" id="country-error"></span>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="checkout-step" id="step-payment" aria-labelledby="step-payment-heading">
+                    <h2 id="step-payment-heading" class="step-heading">Payment Method</h2>
+
+                    <div class="payment-tabs" role="tablist" aria-label="Payment methods">
+                        <button type="button" role="tab" aria-selected="true" aria-controls="panel-card" id="tab-card" class="payment-tab payment-tab--active" tabindex="0">
+                            Credit Card
+                        </button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="panel-bizum" id="tab-bizum" class="payment-tab" tabindex="-1">
+                            Bizum
+                        </button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="panel-paypal" id="tab-paypal" class="payment-tab" tabindex="-1">
+                            PayPal
+                        </button>
+                    </div>
+
+                    <!-- Credit Card Panel -->
+                    <div role="tabpanel" id="panel-card" aria-labelledby="tab-card" class="payment-panel payment-panel--active">
+                        <form class="payment-form" id="card-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-name">Cardholder Name <span class="required">*</span></label>
+                                    <input type="text" id="card-name" name="card-name" required autocomplete="cc-name" aria-describedby="card-name-error">
+                                    <span class="error-text" id="card-name-error"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-number">Card Number <span class="required">*</span></label>
+                                    <input type="text" id="card-number" name="card-number" required autocomplete="cc-number" inputmode="numeric" placeholder="1234 5678 9012 3456" aria-describedby="card-number-error" maxlength="19">
+                                    <span class="error-text" id="card-number-error"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row form-row--two-col">
+                                <div class="form-group">
+                                    <label for="card-expiry">Expiry Date <span class="required">*</span></label>
+                                    <input type="text" id="card-expiry" name="card-expiry" required autocomplete="cc-exp" placeholder="MM/YY" aria-describedby="card-expiry-error" maxlength="5">
+                                    <span class="error-text" id="card-expiry-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvv">CVV <span class="required">*</span></label>
+                                    <input type="text" id="card-cvv" name="card-cvv" required autocomplete="cc-csc" inputmode="numeric" placeholder="123" aria-describedby="card-cvv-error" maxlength="4">
+                                    <span class="error-text" id="card-cvv-error"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div role="tabpanel" id="panel-bizum" aria-labelledby="tab-bizum" class="payment-panel" hidden>
+                        <form class="payment-form" id="bizum-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="bizum-phone">Phone Number <span class="required">*</span></label>
+                                    <input type="tel" id="bizum-phone" name="bizum-phone" required placeholder="+34 600 000 000" aria-describedby="bizum-phone-error">
+                                    <span class="error-text" id="bizum-phone-error"></span>
+                                </div>
+                            </div>
+                            <p class="payment-info">You will receive a Bizum request on your phone to confirm the payment.</p>
+                        </form>
+                    </div>
+
+                    <div role="tabpanel" id="panel-paypal" aria-labelledby="tab-paypal" class="payment-panel" hidden>
+                        <form class="payment-form" id="paypal-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="paypal-email">PayPal Email <span class="required">*</span></label>
+                                    <input type="email" id="paypal-email" name="paypal-email" required placeholder="your@email.com" aria-describedby="paypal-email-error">
+                                    <span class="error-text" id="paypal-email-error"></span>
+                                </div>
+                            </div>
+                            <p class="payment-info">You will be redirected to PayPal to complete your payment.</p>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="checkout-step" id="step-review" aria-labelledby="step-review-heading">
+                    <h2 id="step-review-heading" class="step-heading">Review Your Order</h2>
+
+                    <article class="review-section">
+                        <div class="review-header">
+                            <h3>Cart Items</h3>
+                            <button type="button" class="edit-link" data-edit-step="1">Edit</button>
+                        </div>
+                        <div class="review-content" id="review-cart">
+                        </div>
+                    </article>
+
+                    <article class="review-section">
+                        <div class="review-header">
+                            <h3>Shipping Details</h3>
+                            <button type="button" class="edit-link" data-edit-step="2">Edit</button>
+                        </div>
+                        <div class="review-content" id="review-shipping">
+                        </div>
+                    </article>
+
+                    <article class="review-section">
+                        <div class="review-header">
+                            <h3>Payment Method</h3>
+                            <button type="button" class="edit-link" data-edit-step="3">Edit</button>
+                        </div>
+                        <div class="review-content" id="review-payment">
+                        </div>
+                    </article>
+
+                    <div class="terms-section">
+                        <label class="terms-label">
+                            <input type="checkbox" id="terms-checkbox" required>
+                            <span>I agree to the <a href="#" class="terms-link">Terms & Conditions</a> and <a href="#" class="terms-link">Privacy Policy</a> <span class="required">*</span></span>
+                        </label>
+                        <span class="error-text" id="terms-error"></span>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="order-summary" aria-label="Order summary">
+                <h3 class="summary-heading">Order Summary</h3>
+                <dl class="summary-details">
+                    <div class="summary-row">
+                        <dt>Subtotal</dt>
+                        <dd id="summary-subtotal">0.00</dd>
+                    </div>
+                    <div class="summary-row summary-row--discount" id="summary-discount-row" hidden>
+                        <dt>Discount (10%)</dt>
+                        <dd id="summary-discount">-0.00</dd>
+                    </div>
+                    <div class="summary-row">
+                        <dt>Shipping</dt>
+                        <dd id="summary-shipping">Free</dd>
+                    </div>
+                    <div class="summary-row summary-row--total">
+                        <dt>Total</dt>
+                        <dd id="summary-total">0.00</dd>
+                    </div>
+                </dl>
+
+                <div class="summary-items" id="summary-items">
+                </div>
+            </aside>
+        </div>
+
+        <div class="checkout-navigation">
+            <button type="button" class="btn btn-outline" id="btn-back" hidden>Back</button>
+            <button type="button" class="btn btn-primary" id="btn-continue">Continue</button>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="confirmation-modal" hidden>
+        <div class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+            <div class="modal-content">
+                <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9 12l2 2 4-4"/>
+                </svg>
+                <h2 id="modal-title">Order Confirmed!</h2>
+                <p class="modal-message">Thank you for your order. Your order number is:</p>
+                <p class="order-number" id="order-number"></p>
+                <p class="modal-info">A confirmation email has been sent to your email address.</p>
+                <button type="button" class="btn btn-primary" id="modal-close">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <img src="resources/icons/icon.png" width="60px" alt="ASIREM logo">
+        <p class="brand">ASIREM &copy; 2025</p>
+        <p class="disclaimer">ASIREM ACKNOWLEDGES TRADITIONAL OWNERS OF COUNTRY THROUGHOUT THE GLOBE AND RECOGNISES THE
+            CONTINUING CONNECTION TO LANDS, WATERS AND COMMUNITIES. WE PAY OUR RESPECT TO INDIGENOUS CULTURES;
+            AND TO ELDERS PAST AND PRESENT.</p>
+        <p class="copyright">Developed and designed by Mario Hernandez</p>
+        <section class="subscribe">
+            <p>REGISTER FOR EARLY ACCESS TO LIMITED COLLECTIONS</p>
+            <form action="/submit" method="post">
+                <input type="text" id="name" name="name" placeholder="NAME" required disabled>
+                <input type="email" id="subscribe-email" name="subscribe-email" placeholder="EMAIL" required disabled>
+                <button type="submit" disabled>SUBMIT</button>
+            </form>
+        </section>
+    </footer>
+
+    <template id="cart-item-template">
+        <article class="cart-item">
+            <div class="cart-item-image">
+                <img src="" alt="">
+            </div>
+            <div class="cart-item-details">
+                <h3 class="cart-item-name"></h3>
+                <p class="cart-item-description"></p>
+                <p class="cart-item-price"></p>
+            </div>
+            <div class="cart-item-controls">
+                <div class="quantity-control">
+                    <button type="button" class="qty-btn qty-minus" aria-label="Decrease quantity">-</button>
+                    <input type="number" class="qty-input" min="1" max="10" value="1" aria-label="Quantity">
+                    <button type="button" class="qty-btn qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <div class="item-actions">
+                    <label class="toggle-label">
+                        <input type="checkbox" class="item-toggle" checked>
+                        <span class="toggle-text">Include</span>
+                    </label>
+                    <button type="button" class="remove-btn" aria-label="Remove item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </article>
+    </template>
+
+    <script src="resources/js/products.js"></script>
+    <script src="resources/js/cart.js"></script>
+    <script src="resources/js/checkout.js"></script>
+    <script>
+        document.querySelector('.palette-header').addEventListener('click', function() {
+            document.querySelector('.palette-selector').classList.toggle('collapsed');
+        });
+
+        document.querySelectorAll('.palette-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const palette = this.getAttribute('data-palette');
+
+                document.body.classList.remove('palette-monochromatic', 'palette-complementary', 'palette-analogous', 'palette-triadic');
+
+                document.body.classList.add('palette-' + palette);
+
+                document.querySelectorAll('.palette-button').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

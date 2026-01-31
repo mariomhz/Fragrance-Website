@@ -37,11 +37,11 @@
 
     <nav aria-label="Navegación principal">
         <ul>
-            <li>SHOP</li>
+            <li><a href="index.html">SHOP</a></li>
             <li>ABOUT</li>
             <li>GALLERY</li>
             <li>FOLLOW</li>
-            <li>CART(0)</li>
+            <li><a href="checkout.html">CART(0)</a></li>
         </ul>
     </nav>
 
@@ -118,8 +118,8 @@
                 </div>
 
                 <div class="product-actions">
-                    <button class="btn btn-primary" disabled>BUY NOW</button>
-                    <button class="btn btn-secondary" disabled>ADD TO CART</button>
+                    <button class="btn btn-primary" id="buy-now">BUY NOW</button>
+                    <button class="btn btn-secondary" id="add-to-cart">ADD TO CART</button>
                     <button class="btn btn-outline" disabled>ADD TO FAVORITES</button>
                 </div>
                 <!-- iconos añadidos con IA -->
@@ -180,7 +180,28 @@
     </footer>
 
     <script src="resources/js/products.js"></script>
+    <script src="resources/js/cart.js"></script>
     <script src="resources/js/detail.js"></script>
+    <script>
+        // Get product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        // Add to Cart functionality
+        document.getElementById('add-to-cart').addEventListener('click', function() {
+            if (productId) {
+                Cart.addItem(productId);
+            }
+        });
+
+        // Buy Now functionality (add to cart and go to checkout)
+        document.getElementById('buy-now').addEventListener('click', function() {
+            if (productId) {
+                Cart.addItem(productId);
+                window.location.href = 'checkout.html';
+            }
+        });
+    </script>
     <script>
         // Toggle palette selector
         document.querySelector('.palette-header').addEventListener('click', function() {
