@@ -211,8 +211,15 @@
     </footer>
 
     <script>
+        // Toggle palette selector
+        document.querySelector('.palette-header').addEventListener('click', function() {
+            document.querySelector('.palette-selector').classList.toggle('collapsed');
+        });
+
+        // Palette switching functionality
         document.querySelectorAll('.palette-button').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
                 const palette = this.getAttribute('data-palette');
 
                 document.body.classList.remove('palette-monochromatic', 'palette-complementary', 'palette-analogous', 'palette-triadic');
